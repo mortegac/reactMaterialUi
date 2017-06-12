@@ -2,10 +2,25 @@ import React, { Component } from 'react';
 
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-
+import Checkbox from 'material-ui/Checkbox';
+import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
+// import ActionFavorite from 'material-ui/svg-icons/action/favorite';
+// import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
+// import Visibility from 'material-ui/svg-icons/action/visibility';
+// import VisibilityOff from 'material-ui/svg-icons/action/visibility-off';
 import AppCarga from '../appcarga'
 
-import './style.css';
+import styles from './appinput.css';
+
+
+// const styles = {
+//   block: {
+//     maxWidth: 250,
+//   },
+//   checkbox: {
+//     marginBottom: 16,
+//   },
+// };
 
 
 class AppInput extends Component {
@@ -62,7 +77,7 @@ handleTouchTap() {
     return (
         <div>
         <form onSubmit={() => {}}>
-            <TextField className="bloque fondorojo"
+            <TextField 
             hintText=""
             floatingLabelText="Nombre"
             floatingLabelFixed={true}
@@ -78,9 +93,45 @@ handleTouchTap() {
             onChange={e => this.changeValue(e, 'text')}
             onBlur={this.isDisabled} 
             /><br />
-        </form>
+            <TextField
+            hintText=" "
+            floatingLabelText="Email"
+            floatingLabelFixed={true}
+            type="text"
+            errorText={this.state.text_error_text}
+            onChange={e => this.changeValue(e, 'text')}
+            onBlur={this.isDisabled} 
+            /><br />
+            <div style={styles.block}>
 
-        <RaisedButton label={this.label} onClick={() => this.toggleLoading()}/>
+    <RadioButtonGroup name="shipSpeed" defaultSelected="">
+      <RadioButton
+        value="Masculino"
+        label="Masculino"
+        style={styles.radioButton}
+      />
+      <RadioButton
+        value="Femenino"
+        label="Femenino"
+        style={styles.radioButton}
+      />
+    </RadioButtonGroup>
+  <br />
+
+
+        <Checkbox label="Preferencia A" style={styles.checkbox}/>
+        <Checkbox label="Preferencia B" style={styles.checkbox}/>
+        <Checkbox label="Preferencia C" style={styles.checkbox}/>
+
+  </div>
+
+
+
+            
+        </form>
+        <br />
+        <RaisedButton label={this.label} onClick={() => this.toggleLoading()} primary={true} />
+        
             {this.state.loading ? <div className="box"><br /><AppCarga/></div> : null }
         </div>
 
@@ -90,16 +141,6 @@ handleTouchTap() {
   }
 }
 
-/*
-   <div>
-        <form onSubmit={() => {}}>
-          <input placeholder="Nombre" onChange={(x) => this.updateNombre(x)} type="text"/>
-          <input placeholder="Apellido" onChange={(x) => this.updateApellido(x)} type="text"/>
-        </form>
-        <button onClick={() => this.toggleLoading()}>Enviar</button>
-        {this.state.loading ? <div>Cargando...</div> : null}
-      </div>
- */
 export default AppInput;
 /* 
  <TextField
